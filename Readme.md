@@ -11,3 +11,10 @@ then create and insert products in database as as mentioned in database.js file 
 the create app.js <br>
 then create ejs template <br>
 
+CRUD<br>
+create routes for edit, delete and insert in app.js
+<br>
+then create edit, delete and insert templates ejs
+
+
+

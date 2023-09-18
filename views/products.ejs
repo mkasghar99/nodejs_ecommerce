@@ -7,10 +7,16 @@
 </head>
 <body>
     <h1>Products</h1>
+    <a href="/products/new">Insert Product</a>
     <ul>
         <% products.forEach(product => { %>
-            <li><%= product.name %> - $<%= product.price.toFixed(2) %></li>
+          <li>
+            <%= product.name %> - $<%= product.price.toFixed(2) %>
+            <a href="/products/edit/<%= product.id %>">Edit</a>
+            <a href="/products/delete/<%= product.id %>">Delete</a>
+          </li>
         <% }); %>
-    </ul>
+      </ul>
+      
 </body>
 </html>
