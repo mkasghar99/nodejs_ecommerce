@@ -8,7 +8,7 @@
 <body>
     <h1>Delete Product</h1>
     <p>Are you sure you want to delete "<%= product.name %>"?</p>
-    <form method="post" action="/products/delete/<%= product.id %>">
+    <form method="post" action="/admin/products/delete/<%= product.id %>">
         <button type="submit">Yes, Delete</button>
     </form>
     <a href="/products">Cancel</a>

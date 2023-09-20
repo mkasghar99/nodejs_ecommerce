@@ -15,6 +15,18 @@ CRUD<br>
 create routes for edit, delete and insert in app.js
 <br>
 then create edit, delete and insert templates ejs
-
-
-
+<br>
+<br>
+<br>
+3 user auth
+<br>
+create user table using db_users.js code<br>
+create registeration.ejs and login.ejs form which sends data to relevant route <br>
+create two get routes to display above forms<br>
+create register route, which insert data into users table <br>
+create login route, which will compare credentials with database and upon success set cookies <br>
+create isAuthenticated middleware to check if user logged in cookie set, and place this middleware to private/admin routes<br>
+Note: for above i need to install cookie-parser package and require in app.js and use it <br>
+place all admin views in admin folder and change routes addresses accordingly <br>
+create one public route and template to view products to public <br>
+create logout button on admin home page template, which forwards to logout route and this route clear cookie<br>

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Edit Product</h1>
-    <form method="post" action="/products/edit/<%= product.id %>">
+    <form method="post" action="/admin/products/edit/<%= product.id %>">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" value="<%= product.name %>" required><br>
 
@@ -16,6 +16,6 @@
 
         <button type="submit">Update</button>
     </form>
-    <a href="/products">Back to Products</a>
+    <a href="/admin/products">Back to Products</a>
 </body>
 </html>
