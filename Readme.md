@@ -30,3 +30,8 @@ Note: for above i need to install cookie-parser package and require in app.js an
 place all admin views in admin folder and change routes addresses accordingly <br>
 create one public route and template to view products to public <br>
 create logout button on admin home page template, which forwards to logout route and this route clear cookie<br>
+<br>
+<br>
+<br>
+inserted pagination code in public products route, which takes get parameter in req, fetch products from db then slice them as per req page no., and it send products and other related info for pagination (total pages, current page) to the products templates, which display it accordingly
+<br>

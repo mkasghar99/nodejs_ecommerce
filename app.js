@@ -143,15 +143,28 @@ app.post('/login', (req, res) => {
 });
 
 
-// Define a public route to display products to everyone
+// Define a public route to display paginated products to everyone
 app.get('/products', (req, res) => {
-  db.all('SELECT * FROM products', (err, rows) => {
+  const page = req.query.page || 1; // Get the page parameter from the URL or default to page 1
+  const productsPerPage = 2; // Set the number of products to display per page
+
+  db.all('SELECT * FROM products', (err, allProducts) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.render('public-products', { products: rows });
+
+    // Calculate the range of products to display for the current page
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const products = allProducts.slice(startIndex, endIndex);
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(allProducts.length / productsPerPage);
+
+    res.render('public-products', { products, totalPages, currentPage: parseInt(page) });
   });
 });
+
 
 // Define a route for logging out
 app.get('/logout', (req, res) => {
