@@ -35,3 +35,9 @@ create logout button on admin home page template, which forwards to logout route
 <br>
 inserted pagination code in public products route, which takes get parameter in req, fetch products from db then slice them as per req page no., and it send products and other related info for pagination (total pages, current page) to the products templates, which display it accordingly
 <br>
+<br>
+<br>
+created shoppingcart array<br>
+created cart template and its route to display it, this template shows number products in cart based on shoppingcart array which is being passed through route <br>
+created cart post route, which is coming from products page which include a form for each product which sends current product id to cart post route, this route fetch details of product from db, then checks shoppingcart, if already exists then increase quantity otherwise it pushes it<br>
+created product remove route which also takes product id and remove item from array<br>

@@ -172,3 +172,60 @@ app.get('/logout', (req, res) => {
   res.clearCookie('user');
   res.redirect('/login'); // Redirect to the login page after logging out
 });
+
+
+// Initialize an empty shopping cart array
+const shoppingCart = [];
+
+// Helper function to find a product by its ID
+function findProductById(id) {
+  return shoppingCart.find(item => item.id === id);
+}
+
+// Define a route to display the shopping cart
+app.get('/cart', (req, res) => {
+  res.render('cart', { cart: shoppingCart });
+});
+
+// Define a route to add a product to the shopping cart
+app.post('/cart/add/:id', (req, res) => {
+  const productId = req.params.id;
+
+  // Query the product by ID
+  db.get('SELECT * FROM products WHERE id = ?', [productId], (err, product) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (product) {
+      // Check if the product is already in the shopping cart
+      const existingProduct = findProductById(product.id);
+
+      if (existingProduct) {
+        // If the product is already in the cart, increase its quantity
+        existingProduct.quantity += 1;
+      } else {
+        // If the product is not in the cart, add it with a quantity of 1
+        product.quantity = 1;
+        shoppingCart.push(product);
+      }
+    }
+
+    res.redirect('/products'); // Redirect to the product listing page
+  });
+});
+
+// Define a route to remove a product from the shopping cart
+app.post('/cart/remove/:id', (req, res) => {
+  const productId = req.params.id;
+
+  // Find the index of the product in the shopping cart
+  const index = shoppingCart.findIndex(item => item.id.toString() === productId.toString());
+
+  if (index !== -1) {
+    // Remove the product from the cart
+    shoppingCart.splice(index, 1);
+  } 
+
+  res.redirect('/cart'); // Redirect to the shopping cart page
+});
